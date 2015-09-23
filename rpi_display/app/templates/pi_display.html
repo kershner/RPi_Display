@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <link href='https://fonts.googleapis.com/css?family=Lobster' rel='stylesheet' type='text/css'>
+    <link type="text/css" rel="stylesheet" href="/static/css/pi_display.css"/>
+
+<script src="/static/js/jquery-2.1.4.min.js"></script>
+<script src="/static/js/jquery-color.min.js"></script>
+<script src="/static/js/pi_display.js"></script>
+</head>
+
+<body>
+    <span class="loading">Loading...</span>
+    <div class="container">
+    </div>
+</body>
+
+<script>
+$(document).ready(function() {
+    getImage();
+    $('.loading').colorWave(COLORS);
+    window.colorWave = setInterval(function() {
+        $('.loading').colorWave(COLORS);
+    }, 3000);
+});
+$SCRIPT_ROOT = {{ request.script_root|tojson|safe }};
+</script>
+
+</html>

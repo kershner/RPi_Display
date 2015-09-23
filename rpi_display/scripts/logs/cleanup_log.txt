@@ -1,0 +1,18 @@
+######################################
+Added 0 clean URLs to all_urls.txt
+Removed 0 bad URLs from all_urls.txt
+
+Added 0 clean URLs to animals_urls.txt
+Removed 0 bad URLs from animals_urls.txt
+
+Added 694 clean URLs to gaming_urls.txt
+Removed 3 bad URLs from gaming_urls.txt
+
+Added 0 clean URLs to strange_urls.txt
+Removed 0 bad URLs from strange_urls.txt
+
+Added 0 clean URLs to educational_urls.txt
+Removed 0 bad URLs from educational_urls.txt
+        
+URL cleanup began at 01:50 PM on Wednesday, September 23, 2015
+URL cleanup finished at 01:54 PM on Wednesday, September 23, 2015

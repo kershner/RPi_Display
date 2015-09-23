@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+
+    <meta charset="UTF-8">
+
+    <title>Raspberry Pi GIF Display Config - Previous GIFs</title>
+
+    <link rel="stylesheet" type="text/css" media="all" href="/static/previously.css" />
+
+</head>
+<body>
+
+<div id="container">
+    <header>
+            <a href="/pi_display_config"><div id="title"><h2>Raspberry Pi GIF Display Config</h2></div></a>
+    </header>
+
+    <div id="content">
+        <h1>Previous {{ number }} GIFs</h1>
+        <div class="previous-gifs">
+            {% for gif in last_ten %}
+                <a href="{{ gif }}"><img class="image" src="{{ gif }}"></a>
+            {% endfor %}
+        </div>
+
+        <div class="previous-gifs">
+            {% for gif in next_ten %}
+                <a href="{{ gif }}"><img class="image" src="{{ gif }}"></a>
+            {% endfor %}
+        </div>
+
+        {% if next_ten1 %}
+            <div class="previous-gifs">
+                {% for gif in next_ten1 %}
+                    <a href="{{ gif }}"><img class="image" src="{{ gif }}"></a>
+                {% endfor %}
+            </div>
+
+            <div class="previous-gifs">
+                {% for gif in next_ten2 %}
+                    <a href="{{ gif }}"><img class="image" src="{{ gif }}"></a>
+                {% endfor %}
+            </div>
+        {% endif %}
+
+        {% if next_ten3 %}
+            <div class="previous-gifs">
+                {% for gif in next_ten3 %}
+                    <a href="{{ gif }}"><img class="image" src="{{ gif }}"></a>
+                {% endfor %}
+            </div>
+
+            <div class="previous-gifs">
+                {% for gif in next_ten4 %}
+                    <a href="{{ gif }}"><img class="image" src="{{ gif }}"></a>
+                {% endfor %}
+            </div>
+        {% endif %}
+
+        <div class="next">
+
+            <a href="/pi_display_config"><h1 id="back">Back</h1></a>
+
+            {% if list_length > 20 and not next_ten3 %}
+
+                {% if not next_ten1%}
+                    <a href="/previously/21-40"><h1 id="next">Next 20...</h1></a>
+                {% endif %}
+
+                {% if next_ten1 %}
+                    <a href="/previously/41-60"><h1 id="next">Next 20...</h1></a>
+                {% endif %}
+
+            {% endif %}
+
+        </div>
+
+    </div>
+
+</div>
+
+</body>
+
+</html>

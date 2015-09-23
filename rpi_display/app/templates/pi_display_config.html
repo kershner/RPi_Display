@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Raspberry Pi GIF Display Config</title>
+    <meta name="viewport" content="width=device-width, initial-scale = 1.0, maximum-scale=1.0, user-scalable=no" />
+
+    <link rel="icon" type="image/png" href="/static/img/mcp.png">
+
+    <!--JS-->
+    <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+    <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+    <script src="/static/js/pi_display_config.js"></script>
+
+    <!-- CSS -->
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" media="all" href="/static/css/pi_display_config.css" />
+
+    <!-- Fonts -->
+    <link href='http://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
+</head>
+
+<body class="animate">
+    <div id="content">
+        <div id="title">
+            <span>GIF Control Panel</span>
+        </div>
+
+        <div id="current">
+            <div id="last-played-viewer">
+                <i style="position: absolute; right: 5px; top: 5px;" id="last-played-viewer-close" class="fa fa-times animate"></i>
+                <div id="last-played-viewer-label">Last Played GIFs</div>
+                <div id="last-played-viewer-images"></div>
+            </div>
+
+            <div id="image">
+                <i id="settings-button" class="fa fa-cog fa-3x animate"></i>
+                <i id="save-button" class="fa fa-floppy-o fa-2x animate"></i>
+                <i id="prev-button" class="fa fa-long-arrow-left fa-2x animate"></i>
+
+                <div id="notification"></div>
+
+                <div id="current-settings">
+                    <span>{{ category }}</span>
+                    <span>{{ delay }} seconds</span>
+                </div>
+
+                <img id="normal-image" src="{{ current_gif }}">
+
+                <div id="save-gif">
+                    <i id="save-close" class="fa fa-times animate"></i>
+                    <span id="save-gif-title">Saved GIFs</span>
+
+                    <div id="saved-images">
+                    </div>
+
+                    <i id="email-icon" class="fa fa-paper-plane-o fa-2x animate"></i>
+                    <span id="icon-label">Email GIFs</span>
+                </div>
+
+                <div id="settings">
+                    <i id="settings-close" class="fa fa-times animate"></i>
+                    <div id="update">
+                        <div class="update-button">
+                            <i id="update-gif" class="fa fa-refresh fa-2x animate"></i>
+                            <span>Update GIF</span>
+                        </div>
+
+                        <div class="update-button">
+                            <i id="auto-update" class="fa fa-retweet fa-2x animate"></i>
+                            <span>Auto Update</span>
+                        </div>
+                    </div>
+
+                    <div id="arrows">
+                        <div class="arrow-button">
+                            <i id="prev-gif" class="fa fa-long-arrow-left fa-3x animate"></i>
+                            <span>Prev GIF</span>
+                        </div>
+
+                        <div class="arrow-button">
+                            <i id="open-saved" class="fa fa-folder-open-o fa-2x animate"></i>
+                            <span>Saved GIFs</span>
+                        </div>
+                    </div>
+
+                    <div id="categories">
+                        <div id="all" class="categories-button animate">
+                            <span class="categories-label">All</span>
+                            <span class="categories-number">{{ main_urls_count }} GIFs</span>
+                        </div>
+
+                        <div id="animals" class="categories-button animate">
+                            <span class="categories-label">Animals</span>
+                            <span class="categories-number">{{ animals_urls_count }} GIFs</span>
+                        </div>
+
+                        <div id="gaming" class="categories-button animate">
+                            <span class="categories-label">Gaming</span>
+                            <span class="categories-number">{{ gaming_urls_count }} GIFs</span>
+                        </div>
+
+                        <div id="strange" class="categories-button animate">
+                            <span class="categories-label">Strange</span>
+                            <span class="categories-number">{{ strange_urls_count }} GIFs</span>
+                        </div>
+
+                        <div id="educational" class="categories-button animate">
+                            <span class="categories-label">Educational</span>
+                            <span class="categories-number">{{ educational_urls_count }} GIFs</span>
+                        </div>
+                    </div>
+
+                    <div id="delay-form">
+                        <input id="delay" type="text" placeholder="Delay (seconds)">
+                        <input id="submit" type="submit" value="Update" class="animate">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="main-buttons">
+            <div id="previous-button" class="main-button animate">Previous GIFs</div>
+            <div id="theater-button" class="main-button animate">Theater Mode</div>
+        </div>
+
+        <div id="last-played">
+            <div id="last-played-nav">
+                <span id="last-played-10" class="animate">Previous 10 GIFs</span>
+                <span id="last-played-20" class="animate">Previous 20 GIFs</span>
+                <span id="last-played-50" class="animate">Previous 50 GIFs</span>
+            </div>
+
+            <i id="prev-5-gifs" class="fa fa-chevron-circle-right fa-2x animate"></i>
+            <span id="prev-5-gifs-label">Next 5</span>
+        </div>
+    </div>
+
+<script>
+$(document).ready(function() {
+   var initialCategory = '{{ category }}'.toLowerCase();
+   $('#' + initialCategory).addClass('button-selected');
+   $SCRIPT_ROOT = {{ request.script_root|tojson|safe }};
+   piDisplayConfig();
+});
+</script>
+
+</body>
+</html>

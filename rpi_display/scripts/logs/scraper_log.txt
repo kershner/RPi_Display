@@ -1,0 +1,8 @@
+Wednesday September 23, 2015 - 01:37 PM
+1 GIFs added to all_urls.txt
+0 GIFs added to animals_urls.txt
+0 GIFs added to gaming_urls.txt
+0 GIFs added to strange_urls.txt
+1 GIFs added to educational_urls.txt
+
+Script Execution Time: 6.35 minutes

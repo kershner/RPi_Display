@@ -1,0 +1,44 @@
+body {
+	background-color: #000000;
+	overflow: hidden;
+}
+
+.animate {
+    transition: all .6s ease-in-out;
+    -webkit-transition: all .6s ease-in-out;
+}
+
+.container {
+    position: relative;
+    top: -.3em;
+    left: -0.5em;
+    width: 260px;
+    height: 155px;
+}
+
+.container img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    height: 100%;
+    width: 100%;
+}
+
+.loading {
+    position: absolute;
+    opacity: 0.3;
+    margin: 0 auto;
+    left: 0;
+    right: 0;
+    top: .5em;
+    width: 100%;
+    color: #F2F2F2;
+    font-family: 'Lobster';
+    font-size: 3.5em;
+    text-align: center;
+    text-shadow: 3px 3px 0px rgba(255,255,255,0.3);
+}
+.colorwave {
+    position: relative;
+}
