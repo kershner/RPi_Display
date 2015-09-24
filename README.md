@@ -1,24 +1,28 @@
 # Raspberry Pi GIF Display
 <sub><sup>*This guide is mostly for my own memory when I need to nuke and re-deploy the device, but feel free to use the code for your own project!*</sup></sub>
 
-#### This project uses a bunch of different technologies to run a constantly updating GIF Display powered by a Raspberry Pi.
+**This project uses a few different technologies to run a constantly updating GIF Display powered by a Raspberry Pi.**
 
 # TL:DR...
-1. Scripts run nightly on a server to update and maintain a repository of gif URLs
-2. A website is established to continually rotate those gifs according to user settings
-3. A Pi and a display are set up and configured to boot directly to the website
+**[1.](#scripts)**  Scripts run nightly on a server to update and maintain a repository of gif URLs
 
+**[2.](#website)**  A website is established to continually rotate those gifs according to user settings
+
+**[3.](#hardware)**  A Pi and a display are set up and configured to boot directly to the website
+
+<a name="scripts">
 ## Server Side Scripts
 [scrape_reddit.py](https://github.com/kershner/RPi_Display/blob/master/rpi_display/scripts/scrape_reddit.py) uses the reddit API to grab gifs from a bunch of subreddits I've chosen (visible in the script).  
 
-Gif URLs are collected and deposited into various text files according to the type of subreddit they were collected from.  
+Gif URLs are collected and deposited into various [text files](https://github.com/kershner/RPi_Display/tree/master/rpi_display/urls) according to the type of subreddit they were collected from.  
 
-The 2nd script, [clean_up_urls.py](https://github.com/kershner/RPi_Display/blob/master/rpi_display/scripts/clean_up_urls.py), then parses each text file and tests every URL to make sure it still returns HTTP 200 and that it's not also in another text file called `bad_urls.txt` I've set up to weed out "problematic" gifs (mostly the odd 5 second porn loop that finds its way into the rotation from time to time).
+A second script ([clean_up_urls.py](https://github.com/kershner/RPi_Display/blob/master/rpi_display/scripts/clean_up_urls.py)) then parses each text file and tests every URL for HTTP 200 and that it's not also in another text file called `bad_urls.txt` I've set up to weed out "problematic" gifs (the ocasional 5 second porn loop or what have you).
 
-I've chosen text files as my storage method vs. a database because they're simply a bit easier to interact with for the project's current size.  For example I can simply paste a URL into my `bad_urls.txt` file when I come across one as opposed to writing a SQL/ORM statement each time or creating a separate script/interface.  I might revisit this decision sometime in the future.
+I've chosen text files as my storage method vs. a database because they're simply a bit easier to interact with for the project's current size.  For example I can simply paste a URL into my `bad_urls.txt` file when I come across one as opposed to writing a SQL/ORM statement each time or creating a separate script/interface.  I'll probably revisit this decision.
 
-These scripts should just work (although I'm sure you'll want to heavily tweak them), but one required modification is to update the user agent string for PRAW (Python Reddit API Wrapper) located [here](https://github.com/kershner/RPi_Display/blob/master/rpi_display/scripts/scrape_reddit.py#L142).
+These scripts should just work wherever you choose to run them (although I'm sure you'll want to heavily tweak them), but one required modification is to update the user agent string for PRAW (Python Reddit API Wrapper) located [here](https://github.com/kershner/RPi_Display/blob/master/rpi_display/scripts/scrape_reddit.py#L142).
 
+<a name="website">
 ## Website
 The [website](http://www.kershner.org/pi_display) is a *very* simple bit of HTML and JavaScript designed specifically to be viewed on the display I've chosen.  The site is built with [Flask](http://flask.pocoo.org/) and utilizes [jQuery](https://jquery.com/).  You can find the HTML [here](https://github.com/kershner/RPi_Display/tree/master/rpi_display/app/templates) and the JavaScript [here](https://github.com/kershner/RPi_Display/tree/master/rpi_display/app/static/js).
 
@@ -28,5 +32,6 @@ Each time a gif is played it is written to the config file so it can be viewed o
 
 The loading animation is a fun bit of JavaScript I cooked up called [colorWave](http://codepen.io/kershner/pen/Yyyzjz) and the fade out/fade in for the gifs is handled by a [CSS transition](https://github.com/kershner/RPi_Display/blob/master/rpi_display/app/static/css/pi_display.css#L6) for better performance.
 
+<a name="hardware">
 ## Hardware
 Here I'll detail the process of hooking up the RPi and display and also the configuration of the OS/software to boot directly to the website.
