@@ -8,7 +8,7 @@
 2. A website is established to continually rotate those gifs according to user settings
 3. A Pi and a display are set up and configured to boot directly to the website
 
-## Section 1 - Server Side Scripts
+## Server Side Scripts
 [scrape_reddit.py](https://github.com/kershner/RPi_Display/blob/master/rpi_display/scripts/scrape_reddit.py) uses the reddit API to grab gifs from a bunch of subreddits I've chosen (visible in the script).  
 
 Gif URLs are collected and deposited into various text files according to the type of subreddit they were collected from.  
@@ -19,10 +19,8 @@ I've chosen text files as my storage method vs. a database because they're simpl
 
 These scripts should just work (although I'm sure you'll want to heavily tweak them), but one required modification is to update the user agent string for PRAW (Python Reddit API Wrapper) located [here](https://github.com/kershner/RPi_Display/blob/master/rpi_display/scripts/scrape_reddit.py#L142).
 
-## Section 2 - Website
-The [website](kershner.org/pi_display) is a *very* simple bit of HTML and JavaScript designed specifically to be viewed on the display I've chosen.
-
-The HTML is [here](https://github.com/kershner/RPi_Display/tree/master/rpi_display/app/templates) and the JavaScript is [here](https://github.com/kershner/RPi_Display/tree/master/rpi_display/app/static/js).
+## Website
+The [website](http://www.kershner.org/pi_display) is a *very* simple bit of HTML and JavaScript designed specifically to be viewed on the display I've chosen.  The site is built with [Flask](http://flask.pocoo.org/) and utilizes [jQuery](https://jquery.com/).  You can find the HTML [here](https://github.com/kershner/RPi_Display/tree/master/rpi_display/app/templates) and the JavaScript [here](https://github.com/kershner/RPi_Display/tree/master/rpi_display/app/static/js).
 
 The site reads configuration settings from another file on the server, the **category** for the gifs and the **delay** (in seconds). The category determines which text file to pull URLs from, and the delay setting is used in the `setInterval()` function that drives the gif rotation.  
 
@@ -30,5 +28,5 @@ Each time a gif is played it is written to the config file so it can be viewed o
 
 The loading animation is a fun bit of JavaScript I cooked up called [colorWave](http://codepen.io/kershner/pen/Yyyzjz) and the fade out/fade in for the gifs is handled by a [CSS transition](https://github.com/kershner/RPi_Display/blob/master/rpi_display/app/static/css/pi_display.css#L6) for better performance.
 
-## Section 3 - Hardware
+## Hardware
 Here I'll detail the process of hooking up the RPi and display and also the configuration of the OS/software to boot directly to the website.
