@@ -3,6 +3,10 @@
 
 **This project uses a few different technologies to run a constantly updating GIF Display powered by a Raspberry Pi.**
 
+![RPi Gif Display Build Process](http://www.kershner.org/static/images/pi-display.gif "RPi Gif Display Build Process")
+
+##[Video](https://www.youtube.com/watch?v=PFvCgDggzr4)
+
 # TL:DR...
 **[1.](#scripts)**  Scripts run nightly on a server to update and maintain a repository of gif URLs
 
