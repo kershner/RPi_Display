@@ -138,7 +138,6 @@ def write_urls(url_list, path, category):
 
 
 if __name__ == '__main__':
-    # Accessing Reddit API
     r = praw.Reddit(user_agent='')
     log = Log(0, 0, 0, 0, 0, 0)
     main_path = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
