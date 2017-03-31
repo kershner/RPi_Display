@@ -5,7 +5,7 @@
 
 ![RPi Gif Display Build Process](http://www.kershner.org/static/images/pi-display.gif "RPi Gif Display Build Process")
 
-##[Video](https://www.youtube.com/watch?v=PFvCgDggzr4)
+# [Video](https://www.youtube.com/watch?v=PFvCgDggzr4)
 
 # TL:DR...
 **[1.](#scripts)**  Scripts run nightly on a server to update and maintain a repository of gif URLs
@@ -28,7 +28,8 @@
 
 
 <a name="scripts">
-## Server Side Scripts
+
+# Server Side Scripts
 [scrape_reddit.py](https://github.com/kershner/RPi_Display/blob/master/rpi_display/scripts/scrape_reddit.py) uses the reddit API to grab gifs from a bunch of subreddits I've chosen (visible in the script).  
 
 Gif URLs are collected and deposited into various [text files](https://github.com/kershner/RPi_Display/tree/master/rpi_display/urls) according to the type of subreddit they were collected from.  
@@ -40,7 +41,8 @@ I've chosen text files as my storage method vs. a database because they're simpl
 These scripts should just work wherever you choose to run them (although I'm sure you'll want to heavily tweak them), but one required modification is to update the user agent string for PRAW (Python Reddit API Wrapper) located [here](https://github.com/kershner/RPi_Display/blob/master/rpi_display/scripts/scrape_reddit.py#L142).
 
 <a name="website">
-## Website
+
+# Website
 The [website](http://www.kershner.org/pi_display) is a *very* simple bit of HTML and JavaScript designed specifically to be viewed on the display I've chosen.  The site is built with [Flask](http://flask.pocoo.org/) and utilizes [jQuery](https://jquery.com/).  You can find the HTML [here](https://github.com/kershner/RPi_Display/tree/master/rpi_display/app/templates) and the JavaScript [here](https://github.com/kershner/RPi_Display/tree/master/rpi_display/app/static/js).
 
 The site reads configuration settings from another file on the server, the **category** for the gifs and the **delay** (in seconds). The category determines which text file to pull URLs from, and the delay setting is used in the `setInterval()` function that drives the gif rotation.  
@@ -50,7 +52,8 @@ Each time a gif is played it is written to the config file so it can be viewed o
 The loading animation is a fun bit of JavaScript I cooked up called [colorWave](http://codepen.io/kershner/pen/Yyyzjz) and the fade out/fade in for the gifs is handled by a [CSS transition](https://github.com/kershner/RPi_Display/blob/master/rpi_display/app/static/css/pi_display.css#L6) for better performance.
 
 <a name="hardware">
-## Hardware / Configuration
+
+# Hardware / Configuration
 First things first, you'll need to get a suitable OS installed onto an SD card (for the RPi 1) or a MicroSD card (for the RPi 2).  [This official guide](https://www.raspberrypi.org/help/noobs-setup/) should get you started.  Once the SD card is ready to go, you'll need to hook up a working display and mouse/keyboard to the Pi, insert the SD card, and boot her up.
 
 The first thing I always do on my Pi's first boot is set up [RDP](https://en.wikipedia.org/wiki/Remote_Desktop_Protocol) so I can SSH to the Pi from my desktop PC and not have to worry about hooking up an external display.  To do this you need to set up your Pi's WiFi connection (I usually just do this through the X desktop), install **xrdp** - `sudo apt-get install xrdp`, find your Pi's IP address on your local network (I do this through my router's admin panel, though IPConfig would work too), and then use Windows 7+'s native Remote Desktop application to SSH in.  Now you've got a nice headless RPi!
