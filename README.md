@@ -3,7 +3,7 @@
 
 **This project uses a few different technologies to run a constantly updating GIF Display powered by a Raspberry Pi.**
 
-![RPi Gif Display Build Process](http://www.kershner.org/static/images/pi-display.gif "RPi Gif Display Build Process")
+![RPi Gif Display Build Process](http://old.kershner.org/static/images/pi-display.gif "RPi Gif Display Build Process")
 
 # [Video](https://www.youtube.com/watch?v=PFvCgDggzr4)
 
@@ -43,7 +43,7 @@ These scripts should just work wherever you choose to run them (although I'm sur
 <a name="website">
 
 # Website
-The [website](http://www.kershner.org/pi_display) is a *very* simple bit of HTML and JavaScript designed specifically to be viewed on the display I've chosen.  The site is built with [Flask](http://flask.pocoo.org/) and utilizes [jQuery](https://jquery.com/).  You can find the HTML [here](https://github.com/kershner/RPi_Display/tree/master/rpi_display/app/templates) and the JavaScript [here](https://github.com/kershner/RPi_Display/tree/master/rpi_display/app/static/js).
+The [website](http://old.kershner.org/pi_display) is a *very* simple bit of HTML and JavaScript designed specifically to be viewed on the display I've chosen.  The site is built with [Flask](http://flask.pocoo.org/) and utilizes [jQuery](https://jquery.com/).  You can find the HTML [here](https://github.com/kershner/RPi_Display/tree/master/rpi_display/app/templates) and the JavaScript [here](https://github.com/kershner/RPi_Display/tree/master/rpi_display/app/static/js).
 
 The site reads configuration settings from another file on the server, the **category** for the gifs and the **delay** (in seconds). The category determines which text file to pull URLs from, and the delay setting is used in the `setInterval()` function that drives the gif rotation.  
 
@@ -77,7 +77,7 @@ You'll want to comment out everything that is already in the file and add these 
 These lines should ensure that 'screen blanking' does not occur.  You might need to also install **xset**, a utility to control some settings of x `sudo apt-get install x11-xserver-utils`.
 
 Next you'll be adding a line to start the Chromium browser in kiosk (fullscreen) mode, pointed to the website you've set up.  Mine looks like this:
-`@chromium --kiosk www.kershner.org/pi_display`
+`@chromium --kiosk old.kershner.org/pi_display`
 
 The final step will be to set your resolution and tweak your overscan settings.  These can be located in the **boot.txt** file, so open it up with `sudo nano /boot/config.txt`.  Here you'll want to play with the `FRAMEBUFFER_HEIGHT` and `FRAMEBUFER_WIDTH` settings to set a comfortable resolution.  Mine is currently set to **240x400** which is insanely small, but allows for very smooth gif playback.  If the picture doesn't take up your whole screen (black bars) or if it bleeds off the edge of the screen you'll need to tweak the overscan settings in a very tedious trial and error way.
 
